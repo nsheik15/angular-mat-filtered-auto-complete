@@ -1,0 +1,56 @@
+<h2>Form Fields</h2>
+
+<form [formGroup]="formFields">
+
+  <div formGroupName="address">
+    <div>
+      <mat-form-field>
+        <mat-label>State</mat-label>
+        <input matInput formControlName="state">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Zip Code</mat-label>
+        <input matInput formControlName="zipCode">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Facility</mat-label>
+      <input matInput formControlName="facility" required>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Provider</mat-label>
+      <input matInput formControlName="provider" required>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>provider type</mat-label>
+      <input matInput [matAutocomplete]="auto" formControlName="providerType" required>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Fee Schedule</mat-label>
+      <input matInput formControlName="feeSchedule">
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button [disabled]="!formFields.valid">Save</button>
+
+</form>
